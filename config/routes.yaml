@@ -1,0 +1,15 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+connexion:
+    path: /connexion
+    controller: App\Controller\ConnexionController::seConnecter
+
+consultationCompteRendu:
+    path: /consultation_compte_rendu
+    controller: App\Controller\ConsultationCompteRenduController::choixMois
+
+consultationPraticienHesitant:
+    path: /consultation_praticien_hesitant
+    controller: App\Controller\ConsultationPraticienHesitantController::index
