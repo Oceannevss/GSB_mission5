@@ -31,7 +31,7 @@ class ConnexionController extends AbstractController
        
        if($form->isSubmitted()){
            $data = $form->getData();
-           return $this->render('/connexion/choixPage.html.twig', array('form'=>$form->createView()));
+           return $this->render('/connexion/choixPage.html.twig', array('data'=>$data));
        }
       
        return $this->render('/connexion/index.html.twig', array('form'=>$form->createView()));
@@ -39,19 +39,23 @@ class ConnexionController extends AbstractController
    
    public function formChoix(){
        $formChoix = $this->createFormBuilder()
-               ->add('Consultation compte rendu visiteur', ButtonType::class)
-               ->add('Consultation liste praticiens "hesitants"', ButtonType::class)
+               ->add('compte_rendu_visiteur', ButtonType::class)
+               ->add('praticiens_hesitants', ButtonType::class)
                ->getForm();
        
        $request = Request::createFromGlobals();
        
        $formChoix->handleRequest($request);
        
-       if($formChoix->isSubmitted()){
-           $data = $formChoix->getData();
-           return $this->render('/connexion/choixPage.html.twig', array('form'=>$form->createView()));
-       }
+       if($formChoix->getClickedButton() === $formChoix->get('compte_rendu_visiteur') ){
+           
+           return $this->render('/consultation_compte_rendu/index.html.twig');
+           
+       }elseif ($formChoix->getClickedButton() === $formChoix->get('praticiens_hesitants')) {
+            
+           return $this->render('/consultation_praticien_hesitant/index.html.twig');
+        }
       
-       return $this->render('/connexion/index.html.twig', array('form'=>$form->createView()));
+       return $this->render('/connexion/choixPage.html.twig', array('form'=>$formChoix->createView()));
    }
 }
