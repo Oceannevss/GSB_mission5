@@ -38,17 +38,17 @@ class ConnexionController extends AbstractController
    } 
    
    public function formChoix(){
-       $form = $this->createFormBuilder()
+       $formChoix = $this->createFormBuilder()
                ->add('Consultation compte rendu visiteur', ButtonType::class)
                ->add('Consultation liste praticiens "hesitants"', ButtonType::class)
                ->getForm();
        
        $request = Request::createFromGlobals();
        
-       $form->handleRequest($request);
+       $formChoix->handleRequest($request);
        
-       if($form->isSubmitted()){
-           $data = $form->getData();
+       if($formChoix->isSubmitted()){
+           $data = $formChoix->getData();
            return $this->render('/connexion/choixPage.html.twig', array('form'=>$form->createView()));
        }
       
