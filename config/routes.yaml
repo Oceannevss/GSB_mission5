@@ -5,11 +5,7 @@
 connexion:
     path: /connexion
     controller: App\Controller\ConnexionController::seConnecter
-
-choix:
-    path: /connexion/choix
-    controller: App\Controller\ConnexionController::formChoix
-    
+   
 consultationCompteRendu:
     path: /consultation_compte_rendu
     controller: App\Controller\ConsultationCompteRenduController::choixMois

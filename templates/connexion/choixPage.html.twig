@@ -12,14 +12,12 @@
 
 <p> CHOIX PAGE </p>
 
-{{ form(formChoix) }}
-
-{#<form action="{{ path('consultation_compte_rendu') }}">
+<form action="{{ path('consultationCompteRendu') }}">
     <button type="submit" class="btn btn-primary">Consulter le compte rendu d'un visiteur</button>
 </form>    
-<form action="{{ path('consultation_praticien_hesitant') }}">
+<form action="{{ path('consultationPraticienHesitant') }}">
     <button type="submit" class="btn btn-primary">Consulter la liste des praticiens hesitants</button>
-</form>#}
+</form>
 
 {% endblock %}
 
