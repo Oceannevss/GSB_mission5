@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RapportVisite index{% endblock %}
+
+{% block body %}
+    <h1>RapportVisite index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>IdRapport</th>
+                <th>IdPraticienRapport</th>
+                <th>Bilan</th>
+                <th>DateViste</th>
+                <th>DateRapport</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rapport_visite in rapport_visites %}
+            <tr>
+                <td>{{ rapport_visite.id }}</td>
+                <td>{{ rapport_visite.idRapport }}</td>
+                <td>{{ rapport_visite.idPraticienRapport }}</td>
+                <td>{{ rapport_visite.bilan }}</td>
+                <td>{{ rapport_visite.dateViste ? rapport_visite.dateViste|date('Y-m-d') : '' }}</td>
+                <td>{{ rapport_visite.dateRapport ? rapport_visite.dateRapport|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('compte_rendu_show', {'id': rapport_visite.id}) }}">show</a>
+                    <a href="{{ path('compte_rendu_edit', {'id': rapport_visite.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('compte_rendu_new') }}">Create new</a>
+{% endblock %}
