@@ -12,26 +12,38 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use App\Entity\DelegueRegional;
 
 class ConnexionController extends AbstractController
 {
     
-    
    public function seConnecter(){
        $form = $this->createFormBuilder()
-               ->add('login', TextType::class)
+               ->add('loginn', TextType::class, )
                ->add('motDePasse', PasswordType::class)
                ->add('Valider', SubmitType::class)
                ->add('annuler', ResetType::class)
                ->getForm();
+       
+       $del = $this->getDoctrine()->getRepository(DelegueRegional::class)->findAll();
+       dd($del);
        
        $request = Request::createFromGlobals();
        
        $form->handleRequest($request);
        
        if($form->isSubmitted()){
-           $data = $form->getData();
-           return $this->render('/connexion/choixPage.html.twig', array('data'=>$data));
+           if($del == null){
+                      
+               //return $this->render('/connexion/index.html.twig', array('form'=>$form->createView()));
+                echo 'Le login ou/et le mot de passe est incorrecte ';
+                
+           }else{
+               
+                $data = $form->getData();
+                return $this->render('/connexion/choixPage.html.twig', array('data'=>$data));
+           }
+           
        }
       
        return $this->render('/connexion/index.html.twig', array('form'=>$form->createView()));

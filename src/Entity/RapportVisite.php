@@ -20,11 +20,7 @@ class RapportVisite
     /**
      * @ORM\Column(type="integer")
      */
-    private $idRapport;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
+    
     private $idPraticienRapport;
 
     /**
@@ -50,18 +46,6 @@ class RapportVisite
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdRapport(): ?int
-    {
-        return $this->idRapport;
-    }
-
-    public function setIdRapport(int $idRapport): self
-    {
-        $this->idRapport = $idRapport;
-
-        return $this;
     }
 
     public function getIdPraticienRapport(): ?int

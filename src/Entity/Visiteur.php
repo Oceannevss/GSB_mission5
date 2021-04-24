@@ -22,12 +22,7 @@ class Visiteur
     /**
      * @ORM\Column(type="integer")
      */
-    private $idVisiteur;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
-    private $nom;
+   private $nom;
 
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
@@ -78,19 +73,7 @@ class Visiteur
     {
         return $this->id;
     }
-
-    public function getIdVisiteur(): ?int
-    {
-        return $this->idVisiteur;
-    }
-
-    public function setIdVisiteur(int $idVisiteur): self
-    {
-        $this->idVisiteur = $idVisiteur;
-
-        return $this;
-    }
-
+    
     public function getNom(): ?string
     {
         return $this->nom;

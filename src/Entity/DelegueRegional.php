@@ -18,7 +18,7 @@ class DelegueRegional
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=30, nullable=false)
      */
     private $nom;
 

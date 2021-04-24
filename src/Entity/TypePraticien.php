@@ -22,11 +22,6 @@ class TypePraticien
     /**
      * @ORM\Column(type="integer")
      */
-    private $idType;
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
     private $libelle;
 
     /**
@@ -47,18 +42,6 @@ class TypePraticien
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdType(): ?int
-    {
-        return $this->idType;
-    }
-
-    public function setIdType(int $idType): self
-    {
-        $this->idType = $idType;
-
-        return $this;
     }
 
     public function getLibelle(): ?string

@@ -22,11 +22,6 @@ class Praticien
     /**
      * @ORM\Column(type="integer")
      */
-    private $idPraticien;
-
-    /**
-     * @ORM\Column(type="string", length=30)
-     */
     private $nom;
 
     /**
@@ -72,18 +67,6 @@ class Praticien
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdPraticien(): ?int
-    {
-        return $this->idPraticien;
-    }
-
-    public function setIdPraticien(int $idPraticien): self
-    {
-        $this->idPraticien = $idPraticien;
-
-        return $this;
     }
 
     public function getNom(): ?string
