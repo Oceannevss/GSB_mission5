@@ -27,8 +27,8 @@ class ConnexionController extends AbstractController
        
        //$del = $this->getDoctrine()->getRepository(DelegueRegional::class)->findAll();
        //dd($del);
-       $log = $this->getDoctrine()->getRepository(DelegueRegional::class)->isLoginEquals('login');
-       
+       $log = $this->getDoctrine()->getRepository(DelegueRegional::class)->isLoginEquals();
+       //dd($log);
        $request = Request::createFromGlobals();
        
        $form->handleRequest($request);
@@ -39,11 +39,18 @@ class ConnexionController extends AbstractController
                //return $this->render('/connexion/index.html.twig', array('form'=>$form->createView()));
                 echo 'Le login ou/et le mot de passe est incorrecte ';
                 
-           }else if($log == login){
-               echo login;
+           }else{
+               foreach ($log as $unLogin){
+                   if($unLogin == 'login'){
+                     
                 $data = $form->getData();
                 return $this->render('/connexion/choixPage.html.twig', array('data'=>$data));
-           }
+                    }else{
+                        echo 'Le login ou/et le mot de passe est incorrecte ';
+                    }
+               }
+                
+            }
            
        }
       

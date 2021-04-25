@@ -5,6 +5,7 @@
         <group>
             <file>file:/var/www/html/gsbMission5/src/Controller/ConnexionController.php</file>
             <file>file:/var/www/html/gsbMission5/src/Entity/DelegueRegional.php</file>
+            <file>file:/var/www/html/gsbMission5/src/Repository/DelegueRegionalRepository.php</file>
         </group>
     </open-files>
 </project-private>
