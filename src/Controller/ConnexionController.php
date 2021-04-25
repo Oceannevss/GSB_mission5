@@ -19,27 +19,28 @@ class ConnexionController extends AbstractController
     
    public function seConnecter(){
        $form = $this->createFormBuilder()
-               ->add('loginn', TextType::class, )
+               ->add('login', TextType::class, )
                ->add('motDePasse', PasswordType::class)
                ->add('Valider', SubmitType::class)
                ->add('annuler', ResetType::class)
                ->getForm();
        
-       $del = $this->getDoctrine()->getRepository(DelegueRegional::class)->findAll();
-       dd($del);
+       //$del = $this->getDoctrine()->getRepository(DelegueRegional::class)->findAll();
+       //dd($del);
+       $log = $this->getDoctrine()->getRepository(DelegueRegional::class)->isLoginEquals('login');
        
        $request = Request::createFromGlobals();
        
        $form->handleRequest($request);
-       
+      
        if($form->isSubmitted()){
-           if($del == null){
+           if($log == null){
                       
                //return $this->render('/connexion/index.html.twig', array('form'=>$form->createView()));
                 echo 'Le login ou/et le mot de passe est incorrecte ';
                 
-           }else{
-               
+           }else if($log == login){
+               echo login;
                 $data = $form->getData();
                 return $this->render('/connexion/choixPage.html.twig', array('data'=>$data));
            }
