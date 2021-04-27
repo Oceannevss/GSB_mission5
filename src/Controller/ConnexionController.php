@@ -25,31 +25,32 @@ class ConnexionController extends AbstractController
                ->add('annuler', ResetType::class)
                ->getForm();
        
+       
        //$del = $this->getDoctrine()->getRepository(DelegueRegional::class)->findAll();
        //dd($del);
-       $log = $this->getDoctrine()->getRepository(DelegueRegional::class)->isLoginEquals();
-       //dd($log);
+       $log = $form->get('login')->getData();
+       $mdp = $form->get('motDePasse')->getData();
+       $res = $this->getDoctrine()->getRepository(DelegueRegional::class)->findByLoginAndMotdepasse($log, $mdp);
+       var_dump($res);
+       var_dump($log);
        $request = Request::createFromGlobals();
        
        $form->handleRequest($request);
       
        if($form->isSubmitted()){
-           if($log == null){
-                      
+           
+           
+           if($res == null){
+                    var_dump($res);
+                    var_dump($log);
                //return $this->render('/connexion/index.html.twig', array('form'=>$form->createView()));
-                echo 'Le login ou/et le mot de passe est incorrecte ';
-                
+                //echo 'Aucun login trouvé dans la base de données';
+                 echo 'Le login ou/et le mot de passe est incorrecte ';
            }else{
-               foreach ($log as $unLogin){
-                   if($unLogin == 'login'){
-                     
-                $data = $form->getData();
+               $data = $form->getData();
+              
                 return $this->render('/connexion/choixPage.html.twig', array('data'=>$data));
-                    }else{
-                        echo 'Le login ou/et le mot de passe est incorrecte ';
-                    }
-               }
-                
+            
             }
            
        }

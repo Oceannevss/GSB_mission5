@@ -47,14 +47,14 @@ class DelegueRegionalRepository extends ServiceEntityRepository
         ;
     }
     */
-   public function isLoginEquals(){
-       $conn = $this->getEntityManager()->getConnection();
+   public function findByLoginAndMotdepasse($login, $mdp){
+      
+       return $this->createQueryBuilder('d')
+                   ->select('d.login , d.mdp')
+                   ->andWhere('d.login = :login and d.mdp = :mdp')
+                   ->setParameters(['login'=> $login,'mdp'=> $mdp])
+                   ->getQuery()
+                   ->getResult();
        
-       $sql = 'Select login from delegue_regional;';
-       
-       $stmt = $conn->prepare($sql);
-       $stmt->execute();
-       
-       return $stmt->fetchAll();
    }
 }
