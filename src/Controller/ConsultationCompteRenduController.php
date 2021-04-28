@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Entity\RapportVisite;
 
 class ConsultationCompteRenduController extends AbstractController
 {
@@ -30,13 +32,28 @@ class ConsultationCompteRenduController extends AbstractController
     }
  
     public function choixMois(){
+        $dates = $this->getDoctrine()->getRepository(RapportVisite::class)->findDates();
+        $tab = array();
+        $i = 0;
+        
+        //dd($dates);
+        foreach ($dates as $unedate) {
+            
+            $tab[$i] = $unedate['dateVisite']->format('d/m/y');
+            $i++;
+        }
+        
+        dd($tab);
+        
         $form = $this->createFormBuilder()
-                ->add('mois', DateTimeType::class)
+                //->add('mois', ChoiceType::class, array('choices'=>$dates->format('d/m/y'),'expanded'=>false, 'multiple'=>false))
+                ->add('Valider', SubmitType::class)
                 ->getForm();
         
         $request = Request::createFromGlobals();
        
        $form->handleRequest($request);
+       
        
        if($form->isSubmitted()){
            $data = $form->getData();

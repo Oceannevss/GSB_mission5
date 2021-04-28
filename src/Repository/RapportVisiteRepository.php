@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\RapportVisite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\DBAL\Types\DateTimeType;
 
 /**
  * @method RapportVisite|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,12 @@ class RapportVisiteRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    public function findDates(){
+        
+        return $this->createQueryBuilder('r')
+                   ->select('r.dateVisite')
+                   ->getQuery()
+                   ->getResult();
+    }
 }

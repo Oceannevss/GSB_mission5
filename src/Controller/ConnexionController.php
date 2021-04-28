@@ -28,23 +28,24 @@ class ConnexionController extends AbstractController
        
        //$del = $this->getDoctrine()->getRepository(DelegueRegional::class)->findAll();
        //dd($del);
+       
+       $request = Request::createFromGlobals();
+       
+       $form->handleRequest($request);
+       
        $log = $form->get('login')->getData();
        $mdp = $form->get('motDePasse')->getData();
        $res = $this->getDoctrine()->getRepository(DelegueRegional::class)->findByLoginAndMotdepasse($log, $mdp);
        var_dump($res);
        var_dump($log);
-       $request = Request::createFromGlobals();
-       
-       $form->handleRequest($request);
       
        if($form->isSubmitted()){
            
            
            if($res == null){
-                    var_dump($res);
-                    var_dump($log);
-               //return $this->render('/connexion/index.html.twig', array('form'=>$form->createView()));
-                //echo 'Aucun login trouvé dans la base de données';
+                    //var_dump($res);
+                    //var_dump($log);
+               
                  echo 'Le login ou/et le mot de passe est incorrecte ';
            }else{
                $data = $form->getData();

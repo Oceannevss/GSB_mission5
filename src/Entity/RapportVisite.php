@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RapportVisiteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Type;
 
 /**
  * @ORM\Entity(repositoryClass=RapportVisiteRepository::class)
@@ -29,12 +30,12 @@ class RapportVisite
     private $bilan;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dateViste;
+    private $dateVisite;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateRapport;
 
@@ -72,14 +73,14 @@ class RapportVisite
         return $this;
     }
 
-    public function getDateViste(): ?\DateTimeInterface
+    public function getDateVisite(): ?\DateTimeInterface
     {
-        return $this->dateViste;
+        return $this->dateVisite;
     }
 
-    public function setDateViste(?\DateTimeInterface $dateViste): self
+    public function setDateVisite(?\DateTimeInterface $dateViste): self
     {
-        $this->dateViste = $dateViste;
+        $this->dateVisite = $dateViste;
 
         return $this;
     }
