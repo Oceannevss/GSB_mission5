@@ -47,4 +47,25 @@ class PraticienRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    public function findPraticienOrderByConfiance(){
+        
+        return $this->createQueryBuilder('p')
+                   ->select('p.nom , p.ville')
+                   ->join('p.unType', 't')
+                   ->where('t.libelle == hesitant')
+                   ->getQuery()
+                   ->getResult();
+    }
+    
+    public function findPraticienOrderByDerniereVisite(){
+        
+        return $this->createQueryBuilder('p')
+                    ->select('p.nom, p.ville')
+                    ->join('p.id', 'r')
+                    ->where('r.idPraticienRapport = p.id')
+                    ->orderBy('dateVisite desc')
+                    ->getQuery()
+                    ->getResult();
+    }
 }

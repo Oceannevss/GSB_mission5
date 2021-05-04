@@ -36,8 +36,8 @@ class ConnexionController extends AbstractController
        $log = $form->get('login')->getData();
        $mdp = $form->get('motDePasse')->getData();
        $res = $this->getDoctrine()->getRepository(DelegueRegional::class)->findByLoginAndMotdepasse($log, $mdp);
-       var_dump($res);
-       var_dump($log);
+       //var_dump($res);
+       //var_dump($log);
       
        if($form->isSubmitted()){
            

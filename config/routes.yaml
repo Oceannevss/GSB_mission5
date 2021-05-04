@@ -8,8 +8,8 @@ connexion:
    
 consultationCompteRendu:
     path: /consultation_compte_rendu
-    controller: App\Controller\ConsultationCompteRenduController::choixMois
+    controller: App\Controller\ConsultationCompteRenduController::choixVisiteur
 
 consultationPraticienHesitant:
     path: /consultation_praticien_hesitant
-    controller: App\Controller\ConsultationPraticienHesitantController::index
+    controller: App\Controller\ConsultationPraticienHesitantController::selectionPraticien

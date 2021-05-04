@@ -47,4 +47,11 @@ class VisiteurRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    public function findVisiteurs(){
+        return $this->createQueryBuilder('v')
+                   ->select('v.nom , v.prenom')
+                   ->getQuery()
+                   ->getResult();
+    }
 }
